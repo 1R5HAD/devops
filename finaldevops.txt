@@ -1,0 +1,631 @@
+(1)
+
+git init
+git config --global user.name"Raj-24680"
+git config --global user.email rrrj24680@gmail.com
+echo "hello  i m rahul">file1.txt
+git add .
+git commit -m "initial commit"
+git status
+ls -a
+echo "file modifieds">>file1.txt
+git add .
+git commit -m "file modified"
+git status
+git log
+
+nano sum.java
+public class sum {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}
+
+git add .
+git commit -m "java file modified"
+git status
+javac sum.java
+java Sum
+nano .gitignore
+*.class
+git add .gitignore
+git commit -m "Added gitignore to ignore class files"
+git status
+
+
+(2)
+
+cd desktop
+mkdir git1
+cd git1
+echo "first" > f1.txt
+git add .
+git commit -m "A"
+git branch mybranch 
+git checkout mybranch
+echo "branch change" >> f1.txt
+git add .
+git commit -m "B"
+git checkout main
+echo "main change" > f1.txt
+git add .
+git commit -m "C"
+git merge mybranch
+git mergetool 
+git add .
+git commit -m "resolved"
+git log
+
+
+(3)
+
+--create repo
+git init
+cd desktop
+git clone https://github.com/Raj-24680/pull2.git
+cd pull2
+nano c1.java
+git add .
+git commit -m "cd"
+javac c1.java
+java c1
+git push origin main
+--make changes in readme in GitHub
+git pull origin main
+git log
+
+
+(4)
+
+--create repo
+git init
+cd desktop
+git clone https://github.com/Raj-24680/pull3.git
+cd pull3
+echo "dc">e2.txt
+git add .
+git commit -m "cd"
+git push origin main
+--make changes in radme in GitHub
+git pull origin main
+git log
+git branch fre1
+git checkout fre1
+echo "dccdw">>e2.txt
+git add .
+git commit -m "cd"
+echo "dccddcw">e3.txt
+git add .
+git commit -m "cd"
+git push origin fre1
+--gotto repo click compare pull request
+git checkout main
+git pull origin main
+git push origin --delete fre1
+
+git branch -d feature-1 
+
+
+(5)
+
+--create repo
+git init
+cd desktop
+git clone https://github.com/Raj-24680/pull3.git
+cd pull3
+git pull
+git tag v1.0
+git tag
+git tag -a v2.0 -m "tag created"
+git show v1.0              what is howing output doubt?
+git tag v3.0
+git push --tags
+git push origin -d v1.0
+git tag -d v1.0
+
+
+7
+--create repo
+make one file-App.java
+--enter code-
+
+public class App {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}
+--in Jenkins
+-- freestyle-in scm(git)
+---in build step(execute window batch)
+    javac App.java
+    java App.java
+---post build(archieve the artifact)
+    *.class
+  
+8
+
+--create repo
+make one file-App.java
+--enter code-
+
+public class App {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}
+--in Jenkins
+-- freestyle-in scm(git)
+---in triggers(poll scm)
+    * * * * *
+---in build step(execute window batch)
+    javac App.java
+    java App.java
+
+9
+
+
+--create repo
+make one file-App.java
+--enter code-
+
+public class App {
+    public static void main(String[] args) {
+        int a = 5;
+        int b = 10;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}
+ make one more file-Jenkinsfile
+  pipeline{
+    agent any
+    stages{
+        stage('build'){
+            steps{
+                bat 'javac App.java'
+            }
+        }
+        stage('test'){
+            steps{
+                bat 'java App'
+            }
+        }
+    }
+}
+
+--in Jenkins
+-- pipeline-pipeline script from scmscm(git)
+---script path
+   Jenkinsfile
+
+or 
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                script {
+                    def num1 =10
+                    def num2=14
+                    def sum =num1+num2
+                    echo "sum of ${num1} & ${num2} is:${sum}"
+                }
+           
+            }
+        }
+    }
+}
+
+
+IA2....
+
+
+11.devops1   ✅  ← THIS is your project
+ ├── src
+ ├── calculator.java
+ ├── CalculatorTest.java
+Right click:
+  devops1   ✅
+  Build Path → Add Libraries
+  JUnit → Next → JUnit 4 → Finish
+  Apply and Close
+Before doing this, delete this file:
+	module-info.java
+Right click CalculatorTest.java → Run As → JUnit Test
+package devops1;
+
+public class calculator {
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int sub(int a, int b) {
+        return a - b;
+    }
+
+    public int mul(int a, int b) {
+        return a * b;
+    }
+
+    public int div(int a, int b) {
+        if (b == 0)
+            throw new ArithmeticException("Cannot divide by zero");
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        calculator c = new calculator();
+
+        System.out.println("Addition: " + c.add(10, 5));
+        System.out.println("Subtraction: " + c.sub(10, 5));
+        System.out.println("Multiplication: " + c.mul(10, 5));
+        System.out.println("Division: " + c.div(10, 5));
+    }
+}
+
+package devops1;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class CalculatorTest {
+
+    calculator c = new calculator();
+
+    @Test
+    public void testAdd() {
+        assertEquals(15, c.add(10, 5));
+    }
+
+    @Test
+    public void testSub() {
+        assertEquals(5, c.sub(10, 5));
+    }
+
+    @Test
+    public void testMul() {
+        assertEquals(50, c.mul(10, 5));
+    }
+
+    @Test
+    public void testDiv() {
+        assertEquals(2, c.div(10, 5));
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testDivByZero() {
+        c.div(10, 0);
+    }
+}
+
+12
+C:\Users\rahul\Desktop\demo\demo1\maven_demo\src\main\java\org\bnm_demo>javac App.java
+
+C:\Users\rahul\Desktop\demo\demo1\maven_demo\src\main\java\org\bnm_demo>java App.java
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2
+make two folder demo->demo1
+open demo1 and cmd 
+type:
+mvn archetype:generate
+go to src>java>main>app.java paste the code
+package org.bnm_demo;
+
+public class App {
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int sub(int a, int b) {
+        return a - b;
+    }
+
+    public int mul(int a, int b) {
+        return a * b;
+    }
+
+    public int div(int a, int b) {
+        if (b == 0)
+            throw new ArithmeticException("Cannot divide by zero");
+        return a / b;
+    }
+
+    public static void main(String[] args) {
+        App c = new App();
+
+        System.out.println("Addition: " + c.add(10, 5));
+        System.out.println("Subtraction: " + c.sub(10, 5));
+        System.out.println("Multiplication: " + c.mul(10, 5));
+        System.out.println("Division: " + c.div(10, 5));
+    }
+}
+
+open src>test>apptest.java
+
+package org.bnm_demo;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+class AppTest {
+
+    App c = new App();
+
+    @Test
+    void testAdd() {
+        assertEquals(15, c.add(10, 5));
+    }
+
+    @Test
+    void testSub() {
+        assertEquals(5, c.sub(10, 5));
+    }
+
+    @Test
+    void testMul() {
+        assertEquals(50, c.mul(10, 5));
+    }
+
+    @Test
+    void testDiv() {
+        assertEquals(2, c.div(10, 5));
+    }
+
+    @Test
+    void testDivByZero() {
+        assertThrows(ArithmeticException.class, () -> c.div(10, 0));
+    }
+}
+to go main folder with pom file
+cmd type mvn clean test
+
+13
+Manage Jenkins → Manage Plugins
+cd C:\Users\rahul\Desktop\demo\demo1\maven_demo
+git init
+git add .
+git commit -m "Initial commit - calculator with JUnit"
+https://github.com/yourname/calculator-project.git
+git remote add origin https://github.com/yourname/calculator-project.git
+git branch -M main
+git push -u origin main
+git branch -M main
+New Item
+Freestyle Project
+Source Code Management → Git
+Build → Add build step → Invoke top-level Maven targets
+Add post-build action → Publish JUnit test result report
+Build Now
+target/surefire-reports/*.xml
+clean test
+
+
+
+14.
+
+
+         <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+
+
+15
+docker --version
+docker ps
+docker ps -a
+docker images
+docker run hello-world
+docker ps -a
+docker pull nginx
+docker run -d -p 8088:80 nginx
+docker rmi nginx
+docker logs
+docker pause
+docker unpause
+docker inspect
+docker stop  dd34ccf6dda20333544be6f5521e95c7b30a532bcf256714d
+docker rm dd34ccf6dda20333544be6f5521e95c7b30a532bcf256714d
+
+16 
+create folder- DockApp
+cmd type code .
+create file- helloworld.java
+  public class helloworld {
+    
+    public static void main(String[] args) {
+        System.out.println("Hello, Docker + Java!");
+    }
+}
+create file-Dockerfile
+
+ FROM eclipse-temurin:17-jdk
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy Java file into container
+COPY helloworld.java .
+
+# Compile the Java program
+RUN javac helloworld.java
+
+# Run the program
+CMD ["java", "helloworld"]
+
+C:\Users\rahul\Desktop\docker_app>docker build -t java-hello .
+in cmd-
+docker build -t java-hello .
+docker run java-hello
+Output:hello world will display
+
+17
+docker run -d nginx
+docker run -d -p 8089:80 nginx
+docker volume create myvolume
+docker run -it -v myvolume:/data ubuntu bash
+ enter-
+	cd /data
+	echo " volume test" > test.txt
+	exit
+docker run -it -v myvolume:/data ubuntu bash
+ enter-
+	cat /data/test.txt
+	exit
+docker run -d -p 8087:80 -v myvolume:/usr/share/nginx/html nginx
+docker run -it -v myvolume:/data ubuntu bash
+ enter-
+	echo "<h1>persistent web page<h1>" > /data/index.html
+	exit
+docker ps
+docker volume ls
+docker volume inspect myvolume
+
+ 18
+
+create folder- DockApp
+cmd type code .
+create file- helloworld.java
+  public class helloworld {
+    
+    public static void main(String[] args) {
+        System.out.println("Hello, Docker + Java!");
+    }
+}
+create file-Dockerfile
+
+ FROM eclipse-temurin:17-jdk
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy Java file into container
+COPY helloworld.java .
+
+# Compile the Java program
+RUN javac helloworld.java
+
+# Run the program
+CMD ["java", "helloworld"]
+in cmd-
+C:\Users\rahul\Desktop\docker_app>docker images
+in docker hub login
+docker tag java-hello karan4726/java-hello:latest
+docker push karan4726/java-hello:latest
+see docker hub
+docker pull karan4726/java-hello:latest
+docker images
+
+19.
+
+
+public class calc {
+
+	public int add(int a, int b) {
+		return a + b;
+	}
+
+	public int sub(int a, int b) {
+		return a - b;
+	}
+
+	public int mul(int a, int b) {
+		return a * b;
+	}
+
+	public int div(int a, int b) {
+		if (b == 0)
+			throw new ArithmeticException("Cannot divide by zero");
+		return a / b;
+	}
+
+	public static void main(String[] args) {
+		calc c = new calc();
+
+		System.out.println("Addition: " + c.add(10, 5));
+		System.out.println("Subtraction: " + c.sub(10, 5));
+		System.out.println("Multiplication: " + c.mul(10, 5));
+		System.out.println("Division: " + c.div(10, 5));
+	}
+}
+
+Dockerfile-
+
+FROM eclipse-temurin:17-jdk
+
+# Set working directory inside container
+WORKDIR /app
+
+# Copy Java file into container
+COPY calc.java .
+
+# Compile the Java program
+RUN javac calc.java
+
+# Run the program
+CMD ["java", "calc"]
+
+
+
+ Jenkinsfile-
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t java-calc-app .'
+            }
+        }
+
+        stage('Run Container') {
+            steps {
+                bat 'docker run  java-calc-app'
+            }
+        }
+
+    }
+}
+ push to git hub
+in jenkins-pipeline
+pipescript from scm 
+in scm-git
+script path-Jenkinsfile
+
