@@ -1,9 +1,3 @@
-# DevOps Lab Guide — 23CSE1663
-**B.N.M. Institute of Technology | VTU Autonomous | CSE Sem 6 | 2025–2026**
-
----
-
-## Table of Contents
 
 ### Part A — Git, GitHub & Maven/Jenkins (Exp 1–10)
 - [Experiment 1 — Introduction to Git and Local Repository Management](#experiment-1--introduction-to-git-and-local-repository-management)
